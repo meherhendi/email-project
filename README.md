@@ -8,13 +8,15 @@ instructions to run the project:
 # prerequisites
 port 80,3000 and 4566 must be available for containers to work
 
-# steps to run the porject
+# steps to run the project
 
-* 1- spin up the containers
+* 1- create .env file
+cp backend/.env.example backend/.env
+
+* 2- spin up the containers
 docker-compose up
 
-* 2- create .env file
-cp backend/.env.example backend/.env
+
 
 * 3- open a bash terminal in the localstack container
 docker exec -it <localstack container id> /bin/bash

@@ -1,0 +1,24 @@
+<table mat-table [dataSource]="emails" class="mat-elevation-z8">
+    <!-- Sender Column -->
+    <ng-container matColumnDef="sender">
+      <th mat-header-cell *matHeaderCellDef> From </th>
+      <td mat-cell *matCellDef="let email" [routerLink]="['/emails', email.Id]"> {{ email.Source | emailHide }} </td>
+    </ng-container>
+  
+    <!-- Subject Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject </th>
+      <td mat-cell *matCellDef="let email" [routerLink]="['/emails', email.Id]"> {{ email.Subject }} </td>
+    </ng-container>
+  
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let email" [routerLink]="['/emails', email.Id]"> {{ email.Timestamp | date: "MM-dd-yyyy HH:mm:ss" }} </td>
+    </ng-container>
+  
+    <!-- Table Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

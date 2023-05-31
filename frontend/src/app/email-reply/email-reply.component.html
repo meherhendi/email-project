@@ -1,0 +1,28 @@
+<div *ngIf="email">
+    <h2>Reply Email</h2>
+    <p>Original Email: {{ email.Body.text_part }}</p>
+    <form *ngIf="email && email.canReply" [formGroup]="replyForm" (ngSubmit)="submitReply()">
+      <div>
+        <label for="replyTo">Reply To:</label>
+        <!-- <input type="email" id="replyTo" formControlName="replyTo" [disabled]="true"> -->
+        <label type="email" id="replyTo">{{ email.Source | emailHide }}</label>
+      </div>
+      <div>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" formControlName="subject">
+        <div *ngIf="replyForm.get('subject')?.invalid && replyForm.get('subject')?.touched">
+          <div *ngIf="replyForm.get('subject')?.hasError('required')">Subject is required.</div>
+        </div>
+      </div>
+      <div>
+        <label for="body">Body:</label>
+        <textarea id="body" formControlName="body"></textarea>
+        <div *ngIf="replyForm.get('body')?.invalid && replyForm.get('body')?.touched">
+          <div *ngIf="replyForm.get('body')?.hasError('required')">Body is required.</div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="replyForm.invalid">Submit</button>
+    </form>
+    <label *ngIf="email && email.canReply === false"> you have already replied to this email</label>
+  </div>
+  
